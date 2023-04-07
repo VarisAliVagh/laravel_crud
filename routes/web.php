@@ -24,8 +24,11 @@ Route::get('/register',[RegisterController::class,'index']);
 Route::get('/delete/{id}',[RegisterController::class,'delete'])->name('customer_delete');
 Route::post('/register',[RegisterController::class,'insert'])->name('customer_insert');
 Route::get('/edit/{id}',[RegisterController::class,'edit'])->name('customer_edit');
-
 Route::post('/update/{id}',[RegisterController::class,'update'])->name('customer_update');
+Route::get('/trash-data',[RegisterController::class,'trash']);
+Route::get('/data-restore/{id}',[RegisterController::class,'restore'])->name('data-restore');
+
+
 
 Route::get('get-all-session',function(){
     $session = session()->all();

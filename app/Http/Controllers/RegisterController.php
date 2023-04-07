@@ -74,4 +74,15 @@ class RegisterController extends Controller
             return redirect('/');
         }
     }
+    public function trash()
+    {
+        $customers = Customers::onlyTrashed()->get();
+        $data = compact('customers');
+        return view('trash-data')->with($data);     
+    }
+    public function restore($id)
+    {
+        Customers::withTrashed()->find($id)->restore();      
+        return redirect('/');
+    }
 }
