@@ -16,6 +16,8 @@ class RegisterController extends Controller
     }
     public function insert(Request $req)
     {
+        pre($req->all());
+        die;
         $req -> validate([
             'first_name' => 'required',
             'last_name'  => 'required',
