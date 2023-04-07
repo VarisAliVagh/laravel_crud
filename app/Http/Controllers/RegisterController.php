@@ -10,7 +10,9 @@ class RegisterController extends Controller
 {
     public function index()
     {
-        return view('register');
+        $url = url('/');
+        $data = compact('url');
+        return view('register')->with($data);
     }
     public function insert(Request $req)
     {
@@ -40,12 +42,32 @@ class RegisterController extends Controller
         }
         return redirect('/');
     }
-    public function update($id)
+    public function edit($id)
     {
-        $customer = Customers::find($id);
-        if(!is_null($customer)){
-            $customer -> delete();
+        $customer = Customers::find($id);        
+        $data = $customer -> toarray();
+        if(is_null($customer)){
+            return redirect('/');
         }
-        return redirect('/');
+        else{
+            $data = compact('data');
+            return view('register')->with($data);
+        }
+    }
+    public function update(Request $req,$id)
+    {
+        $customer = Customers::find($id);        
+        $data = $customer -> toarray();
+        if(is_null($customer)){
+            return redirect('/');
+        }
+        else{
+            $customer -> first_name = $req['first_name']; 
+            $customer -> last_name = $req['last_name'];
+            $customer -> email = $req['email'];
+            $customer -> save();
+
+            return redirect('/');
+        }
     }
 }

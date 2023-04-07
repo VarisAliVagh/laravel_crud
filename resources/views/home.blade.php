@@ -20,7 +20,7 @@
             <td>{{ $data['email'] }}</td>
             <td>
                 <a href="{{ route('customer_delete',['id' => $data['id']]) }}" class="btn btn-danger">delete</a>
-                <a href="{{ route('customer_update',['id' => $data['id']]) }}" class="btn btn-primary">update</a>
+                <a href="{{ route('customer_edit',['id' => $data['id']]) }}" class="btn btn-primary">edit</a>
             </td>
         </tr>
         @endforeach
