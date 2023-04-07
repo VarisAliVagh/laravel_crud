@@ -9,6 +9,7 @@
             <th scope="col">first name</th>
             <th scope="col">last name</th>
             <th scope="col">email</th>
+            <th scope="col">dob</th>
             <th scope="col">action</th>
         </tr>
     </thead>
@@ -18,9 +19,10 @@
             <td>{{ $data['first_name'] }}</td>
             <td>{{ $data['last_name'] }}</td>
             <td>{{ $data['email'] }}</td>
+            <td>{{ $data['dob'] }}</td>
             <td>
                 <a href="{{ route('customer_delete',['id' => $data['id']]) }}" class="btn btn-danger">delete</a>
-                <a href="{{ route('customer_update',['id' => $data['id']]) }}" class="btn btn-primary">update</a>
+                <a href="{{ route('customer_edit',['id' => $data['id']]) }}" class="btn btn-primary">edit</a>
             </td>
         </tr>
         @endforeach

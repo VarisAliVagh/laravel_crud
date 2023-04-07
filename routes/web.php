@@ -18,7 +18,12 @@ use App\Http\Controllers\RegisterController;
 
 Route::get('/',[HomeController::class,'index']);
 Route::get('/about',[AboutController::class,'index']);
+
+
 Route::get('/register',[RegisterController::class,'index']);
-Route::post('/register',[RegisterController::class,'insert'])->name('customer_insert');
 Route::get('/delete/{id}',[RegisterController::class,'delete'])->name('customer_delete');
-Route::get('/update/{id}',[RegisterController::class,'update'])->name('customer_update');
+Route::post('/register',[RegisterController::class,'insert'])->name('customer_insert');
+Route::get('/edit/{id}',[RegisterController::class,'edit'])->name('customer_edit');
+
+Route::post('/update/{id}',[RegisterController::class,'update'])->name('customer_update');
+
