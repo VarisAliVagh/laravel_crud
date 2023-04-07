@@ -16,11 +16,10 @@ class RegisterController extends Controller
     }
     public function insert(Request $req)
     {
-        pre($req->all());
-        die;
         $req -> validate([
             'first_name' => 'required',
             'last_name'  => 'required',
+            'dob'        => 'required',
             'email'      => 'required|email',
             'password'   => 'required'
         ]);
@@ -31,6 +30,7 @@ class RegisterController extends Controller
         $db -> last_name = $req['last_name'];
         $db ->  email = $req['email'];
         $db -> password = md5($req['password']);
+        $db -> dob = $req['dob'];
 
         $db -> save();
 
@@ -67,6 +67,8 @@ class RegisterController extends Controller
             $customer -> first_name = $req['first_name']; 
             $customer -> last_name = $req['last_name'];
             $customer -> email = $req['email'];
+            $customer -> dob = $req['dob'];
+
             $customer -> save();
 
             return redirect('/');
