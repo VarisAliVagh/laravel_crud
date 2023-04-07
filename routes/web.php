@@ -27,3 +27,20 @@ Route::get('/edit/{id}',[RegisterController::class,'edit'])->name('customer_edit
 
 Route::post('/update/{id}',[RegisterController::class,'update'])->name('customer_update');
 
+Route::get('get-all-session',function(){
+    $session = session()->all();
+    pre($session);
+});
+
+Route::get('set-all-session',function(){
+    $session = session()->put('name','varisali');
+    $session = session()->put('id','123');
+    session()->flash('status','success');
+    return redirect('get-all-session');
+});
+
+Route::get('destroy-all-session',function(){
+    $session = session()->forget('name','varisali');
+    $session = session()->forget('id','123');
+    return redirect('get-all-session');
+});
