@@ -16,18 +16,21 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
-Route::get('/',[HomeController::class,'index']);
-Route::get('/about',[AboutController::class,'index']);
+Route::group([],function(){
+    Route::get('/',[HomeController::class,'index']);
+    Route::get('/about',[AboutController::class,'index']);
+    Route::get('/register',[RegisterController::class,'index']);
+    Route::get('/delete/{id}',[RegisterController::class,'delete'])->name('customer_delete');
+    Route::post('/register',[RegisterController::class,'insert'])->name('customer_insert');
+    Route::get('/edit/{id}',[RegisterController::class,'edit'])->name('customer_edit');
+    Route::post('/update/{id}',[RegisterController::class,'update'])->name('customer_update');
+    Route::get('/trash-data',[RegisterController::class,'trash']);
+    Route::get('/data-restore/{id}',[RegisterController::class,'restore'])->name('data-restore');
+    Route::get('/force_delete/{id}',[RegisterController::class,'force_delete'])->name('force_delete');
+    Route::post('/upload/save',[RegisterController::class,'upload_file']);
 
+});
 
-Route::get('/register',[RegisterController::class,'index']);
-Route::get('/delete/{id}',[RegisterController::class,'delete'])->name('customer_delete');
-Route::post('/register',[RegisterController::class,'insert'])->name('customer_insert');
-Route::get('/edit/{id}',[RegisterController::class,'edit'])->name('customer_edit');
-Route::post('/update/{id}',[RegisterController::class,'update'])->name('customer_update');
-Route::get('/trash-data',[RegisterController::class,'trash']);
-Route::get('/data-restore/{id}',[RegisterController::class,'restore'])->name('data-restore');
-Route::get('/force_delete/{id}',[RegisterController::class,'force_delete'])->name('force_delete');
 
 
 
@@ -53,4 +56,3 @@ Route::get('/upload',function(){
     return view('upload');
 });
 
-Route::post('/upload/save',[RegisterController::class,'upload_file']);
