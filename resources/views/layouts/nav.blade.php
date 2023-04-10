@@ -18,12 +18,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/about">About</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/register">Register</a>
-            </li>
         </ul>
         <form action="" method="get" class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" value="">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" value="{{ isset($search) ? $search : ''}}">
             <button class="mr-2 btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             <a href="{{ url('/') }}" class="btn btn-primary">Reset</a>
         </form>

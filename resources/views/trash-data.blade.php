@@ -3,7 +3,7 @@
 <title>Trash Store</title>
 
 @section('main-content')
-<a href="{{ url('/') }}" class="btn btn-danger float-right mb-3">Go to home</a>
+<a href="{{ url('/') }}" class="btn btn-primary float-right mb-3">Go to home</a>
 <table class="table">
     <thead>
         <tr>

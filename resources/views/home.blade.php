@@ -30,8 +30,8 @@
         @endforeach
     </tbody>
 </table>
-<div class="row">
-    {{ $customers -> links() }}
+<div class="row pagination">
+    {{ $customers}}
 </div>
 <a href="/register" class="btn btn-primary">Register</a>
 @endsection
