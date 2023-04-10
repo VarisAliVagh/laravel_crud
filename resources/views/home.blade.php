@@ -4,6 +4,7 @@
 
 @section('main-content')
 <a href="{{ url('/') }}/trash-data" class="btn btn-danger float-right mb-3">Go to trash</a>
+
 <table class="table">
     <thead>
         <tr>
@@ -29,5 +30,8 @@
         @endforeach
     </tbody>
 </table>
+<div class="row">
+    {{ $customers -> links() }}
+</div>
 <a href="/register" class="btn btn-primary">Register</a>
 @endsection
