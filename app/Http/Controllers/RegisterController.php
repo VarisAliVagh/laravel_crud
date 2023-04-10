@@ -80,9 +80,25 @@ class RegisterController extends Controller
         $data = compact('customers');
         return view('trash-data')->with($data);     
     }
+    public function force_delete($id)
+    {
+        
+        $customers = Customers::withTrashed()->find($id);
+
+        if(!is_null($customers)){
+            $customers -> forceDelete();
+        }
+
+        return redirect('/');
+    }
     public function restore($id)
     {
         Customers::withTrashed()->find($id)->restore();      
         return redirect('/');
+    }
+    
+    public function upload_file(Request $data)
+    {
+        echo $data -> file('data') -> store('uploads');
     }
 }
