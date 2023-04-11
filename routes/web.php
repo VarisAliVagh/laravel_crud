@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\RegisterController;
 
 /*
@@ -19,7 +20,7 @@ use App\Http\Controllers\RegisterController;
 Route::group([],function(){
     Route::get('/',[HomeController::class,'index']);
     Route::get('/about',[AboutController::class,'index']);
-    Route::get('/register',[RegisterController::class,'index']);
+    Route::get('/register',[RegisterController::class,'index'])->middleware('loginWithAge');
     Route::get('/delete/{id}',[RegisterController::class,'delete'])->name('customer_delete');
     Route::post('/register',[RegisterController::class,'insert'])->name('customer_insert');
     Route::get('/edit/{id}',[RegisterController::class,'edit'])->name('customer_edit');
@@ -28,10 +29,10 @@ Route::group([],function(){
     Route::get('/data-restore/{id}',[RegisterController::class,'restore'])->name('data-restore');
     Route::get('/force_delete/{id}',[RegisterController::class,'force_delete'])->name('force_delete');
     Route::post('/upload/save',[RegisterController::class,'upload_file']);
-
+    Route::get('/member',[IndexController::class,'index']);
+    Route::get('/group',[IndexController::class,'group']);
+    
 });
-
-
 
 
 Route::get('get-all-session',function(){
@@ -41,14 +42,14 @@ Route::get('get-all-session',function(){
 
 Route::get('set-all-session',function(){
     $session = session()->put('name','varisali');
-    $session = session()->put('id','123');
+    $session = session()->put('user_id','123');
     session()->flash('status','success');
     return redirect('get-all-session');
 });
 
 Route::get('destroy-all-session',function(){
     $session = session()->forget('name','varisali');
-    $session = session()->forget('id','123');
+    $session = session()->forget('user_id','123');
     return redirect('get-all-session');
 });
 
@@ -56,3 +57,7 @@ Route::get('/upload',function(){
     return view('upload');
 });
 
+
+Route::get('/no-access',function(){
+    echo "you are not authrized to view this page";
+});
